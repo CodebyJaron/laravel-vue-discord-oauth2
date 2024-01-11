@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\AuthController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::get('/me', [AuthController::class, 'me']);
+
+Route::group(['middleware' => ['web']], function () {
+    Route::get('/auth/discord', function () {
+        return Socialite::with('discord')->redirect()->getTargetUrl();
+    });
 });

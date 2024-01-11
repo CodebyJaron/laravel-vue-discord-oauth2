@@ -7,10 +7,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Auth\Authenticatable as Auth;
 
-class User extends Authenticatable
+class User extends Authenticatable implements
+    AuthenticatableContract,
+    AuthorizableContract
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use Auth, HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -19,13 +24,11 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'id',
-        'username',
-        'discriminator',
+        'name',
+        'nickname',
         'email',
         'avatar',
-        'verified',
         'locale',
-        'mfa_enabled',
         'refresh_token'
     ];
 
