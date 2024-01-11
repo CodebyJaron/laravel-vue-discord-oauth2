@@ -33,3 +33,35 @@ Before getting started, ensure you have the following dependencies installed:
     ```bash
     git clone https://github.com/CodebyJaron/laravel-vue-discord-oauth2.git
     ```
+
+2. Install the Composer dependencies:
+
+```bash
+composer update
+```
+
+3. Install the NPM dependencies:
+
+```bash
+npm install
+```
+
+4. Copy the `.env.example` file to `.env` and fill in the required environment
+   variables.
+5. Generate a new application key:
+
+```bash
+php artisan key:generate
+```
+
+6. Run the database migrations:
+
+```bash
+php artisan migrate
+```
+
+7. Run the application:
+
+```bash
+php artisan serve && npm run dev
+```
